@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif; 
+}
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    scroll-behavior: smooth;}
+  
+.container-fluid {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    overflow: hidden;
+}
+section {
+    overflow-x:hidden;
+    min-height: auto; 
+    padding: 100px 0; 
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+.container .text-center {
+    background-color: white; 
+    padding: 0; 
+    min-height: 80vh; 
+    width: 100%;
+}
+.activity-header {
+    background-color: #386737; 
+    color: white;
+    text-align: center;
+    padding: 60px 0 40px 0; 
+    margin-bottom: 0; 
+    width: 100%; 
+    z-index: 3; 
+}
+.activity-header h1 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; }
+.btn-activity {
+    background-color: #C6BA9A; 
+    color: #18350B !important; 
+    padding: 12px 40px;
+    border-radius: 50px; 
+    font-weight: 600;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+/* --- ANIMASI SCROLL --- */
+.scroll-in { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; transform: translateY(20px); }
+.scroll-in.show { opacity: 1; transform: translate(0, 0); }

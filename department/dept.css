@@ -1,0 +1,185 @@
+*{
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: "Poppins", sans-serif; }
+.container{ scroll-snap-type: y mandatory; overflow-y: scroll; height: 100vh; scroll-behavior: smooth;}
+section{
+    overflow-x:hidden;
+    height :100vh; 
+    /* display: flex; */
+    justify-content: center;
+    align-items: center; 
+    scroll-snap-align: start; }
+.dept-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+.dept-section::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background: rgba(64, 104, 104, 0.5);;
+    z-index: 1; }
+.dept-container { position: relative;z-index: 2; }
+.dept-container h1{
+    font-size: 2.5rem;
+    text-decoration: underline;
+    text-underline-offset: 8px; }
+.dept-section.nbd {background-image: url(fotodept/F0A393CD-B11C-4F74-810A-E30CE091257E.jpeg);}
+.dept-section.secre {background-image: url(fotodept/secre/IMG_8895.jpg);}
+.dept-section.aca {background-image: url(fotodept/1184_copy.jpg);}
+.dept-section.finance {background-image: url(fotodept/finance/9054_copy.jpg);}
+.dept-section.internal {background-image: url(fotodept/internal/IMG_9141.jpg);}
+.dept-section.branding {background-image: url(fotodept/branding/9074copy.jpg);}
+.dept-two { background: linear-gradient(to bottom, #18350B);}
+.Hod-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px; } 
+.HoD-dept {
+    margin-bottom: 70px;
+    padding: 40px;
+    font-family: sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 100%; }
+.HoD-card {
+    display: flex;
+    align-items: center;
+    gap:40px; 
+    text-align: right; }
+.HoD-card .HoD-text {align-items: flex-start; text-align: left; color: #082b08;}
+.judul-pvp{
+    color: white;
+    letter-spacing: 2px;
+    background-color: #406868;
+    padding: 7px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 8px;
+    /* flex: 1; */
+    min-width: 250px; }
+.HoD-card img { height: 200px; width: 200px; border-radius: 12px; object-fit: cover; }
+.HoD-text {display: flex; flex-direction: column; justify-content: center; }
+.HoD-text p{padding: 3px;}
+.medsos-container{ gap: 10px; display: flex; gap: 8px;  }
+.medsos-container img{ height: 30px; width: 30px; object-fit: contain;}
+.medsos-img a{text-decoration: none; }
+.deputy {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center; /* Horizontal tengah */
+    width: 100%; }
+.deputy .HoD-card {display: flex; align-items: center; justify-content: center; gap: 40px;}
+.deputy .HoD-text {text-align:  left; width: 350px;}
+.deputy .HoD-card img {flex-shrink: 0;}
+.deputy-card {
+    display: flex;
+    align-items: center;
+    gap:40px; 
+    text-align: right;
+}
+.deputy-card img {height: 200px; width: 200px; border-radius: 12px; object-fit: cover;}
+.deputy-text {
+    text-align:  left; 
+    width: 350px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; } 
+.deputy-text p{padding: 3px;}
+.badge {
+    margin-bottom: 15px;
+    display: inline-block;
+    background-color: #547D84; /* warna bg mirip gambar */
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+    padding: 5px 10px; /* jarak dalam */
+    border-radius: 10px; /* sudut membulat */
+    box-shadow: 5px 5px 0px rgba(128, 128, 128, 0.5); /* bayangan abu-abu */
+    font-size: 1rem; /* ukuran font */ }
+
+.programs {
+    margin-top: 60px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+}
+.programs-left { flex: 1; margin-left: 40px}
+.programs-left h2 {font-size: 2.5rem; margin-bottom: 20px; margin-left: 30px;}
+.programs-left ul {list-style: none; padding: 0;}
+.programs-left li { margin-bottom: 15px; position: relative; padding-left: 25px; text-align: justify;}
+.programs-left li::before {
+    color: #2e7d32;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+.programs-right {
+    flex: 1;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.programs-right {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+/* BOARD */
+.board {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+.board-card {
+    background-color: white;
+    border-radius: 10px;
+    width: 150px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+.board-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px; }
+.board-card h2 { font-size: 1rem; margin: 8px 0;}
+.board-card .medsos-container img {height: 30px; width: 30px; object-fit: contain;}
+
+/* NBD */
+.board-title {
+    letter-spacing: 3px;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    color: white;
+    font-size: 2rem;
+    text-align: center; }
+.boardefp {
+    margin-bottom: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; }
+
+/* BRANDING */
+.efp2.cm {margin-top: -90px; margin-bottom: 100px}
+.efp-photo.cm img {max-height: 500px; margin-right: 80px; margin-left: 70px; margin-top: -60px; }

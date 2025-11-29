@@ -3,8 +3,8 @@
     padding : 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif; }
-body { overflow-x: hidden; background: linear-gradient(to bottom, #18350B) ; margin: 0; padding: 0; scroll-behavior: smooth;}
-.about-page{background: linear-gradient(to bottom, #0b3d2e, #567c4b); }
+body {width: 100%; overflow-y: visible; overflow-x: hidden; background: linear-gradient(to bottom, #18350B) ; margin: 0; padding: 0; scroll-behavior: smooth;}
+.about-page{background: linear-gradient(to bottom, #0b3d2e, #c7bda5); }
 .container{ scroll-snap-type: y mandatory; overflow-y: scroll; height: 100vh; scroll-behavior: smooth;}
 section{
     overflow-x:hidden;
@@ -13,6 +13,27 @@ section{
     justify-content: center;
     align-items: center; 
     scroll-snap-align: start; } 
+
+/* ANIMASI SCROLL IN */
+.scroll-in {
+    transform: translateY(100px); /* gerak dari bawah */
+    transition: transform 0.8s ease-out; }
+.scroll-in.show {transform: translateY(0);}
+.scroll-in-right {
+    transform: translateX(100px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out; }
+.scroll-in-right.show {
+    transform: translateX(0) scale(1);
+    opacity: 1; }
+.scroll-in-left {
+    transform: translateX(-100px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.8s ease; }
+.scroll-in-left.show {
+    transform: translateX(0) scale(1);
+    opacity: 1; }
+
 .one{ 
     position: relative;
     background-image: url(fotoalbum/Green\ Tosca\ Modern\ Geometric\ Web\ Hosting\ Service\ Presentation.jpg);
@@ -22,7 +43,8 @@ section{
     color: white;
     display: flex;
     align-items: center;
-    justify-content: center; }
+    justify-content: center; 
+}
 .vision{ padding: 60px 100px; }
 .vission-row {
     padding-left: 20px;
@@ -35,8 +57,8 @@ section{
 .vision-title{display: flex; align-items: flex-start; flex-direction: column; gap: 0;}
 h2.visi{ font-size: 4rem; letter-spacing: 6px;  color: white; position: relative; margin: 0; padding-bottom: 10px; line-height: 1;} 
 h2.our { font-size: 3rem;  letter-spacing: 6px ; color: #007a60;  margin: 0; padding: 0; line-height: 1; }
-.vision-text p { font-size: 18px; color: #d7d0d0; margin-top: 20px; line-height: 1.6; text-align: justify;}
-.vision-text p span{color: #007a60;}
+.vision-text p { font-size: 18px; color: #b6c664; margin-top: 20px; line-height: 1.6; text-align: justify;}
+.vision-text p span{color: #f3fcfa; font-weight: bold;}
 h2.visi::after{
     content: "";
     position: absolute;
@@ -82,15 +104,7 @@ h2.visi::after{
     flex: 1;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);}
 .misi-box p{margin: 0; font-size: 1rem; color: #18350B; line-height: 1.6;}
-/* .mission p{ flex: 3; text-align: justify;  font-family: 'Poppins', sans-serif; }
-.point{
-    background-color: #71d5a3;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6; } */
+
 
 /* TAGLINE */
 .ourtagline {
@@ -236,19 +250,19 @@ h2.visi::after{
 .sre-right h1{
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 10px; }
+    margin-bottom: 5px; }
 .slogan-wrapper{
     background-color: #3f5838;
     display: inline-block;
     padding: 4px;
     border-radius: 20px;
-    margin: 10px 0 20px 0;  }
+    margin-bottom: 5px;
+     }
 .slogan-badge {
     background-color: #466b67;
     color: white;
     font-style: italic;
     font-weight: 600;
-    padding: 6px 16px;
     border-radius: 20px;
     display: inline-block;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
@@ -260,7 +274,7 @@ h2.visi::after{
 
 /* TENTANG SRE INDONESIA */
 .home-three{
-    color: white;
+    color:  #18350B; 
     /* background-color: #037581; */
     /* padding: 2rem; */
     /* padding-top: 3rem; */
@@ -274,7 +288,7 @@ h2.visi::after{
 .sreidn-heading h1{
     font-size: 2.5rem;
     font-weight: bold;
-    color: white;
+    color:  #18350B; 
     margin: 0; }
 .sreidn-heading img{ width: 85px; height: auto; display: block; margin-bottom: 8px;}
 .sreidn-images{
@@ -314,7 +328,7 @@ h2.visi::after{
     flex-wrap: wrap;
     text-align: center;
 }
-.collab-heading h1{ font-size: 2rem; margin: 0; color: white; }
+.collab-heading h1{ font-size: 2rem; margin: 0; color:  #18350B;  }
 .collab-heading img{
     margin-top: 8.7rem;
     height: auto; 
@@ -367,7 +381,8 @@ h2.visi::after{
 /* CONTACT US */
 .home-five{
     /* background-color: #037581; */
-    color: white;
+    color:  #18350B; 
+
     padding: 80px 40px;
     min-height: 100vh;
     display: flex;
@@ -637,76 +652,4 @@ h2.visi::after{
     transition: background-color 0.3s ease; }
 .back-btn:hover { background-color: #406868; }
 
-
 /* MEET OUR TEAM */
-.pvp-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 40px; }
-.pvp-title {
-    color: white;
-    letter-spacing: 3px;
-    padding: 3px 8px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-bottom: 8px;
-    /* flex: 1; */
-    min-width: 250px; }
-.pvp-title h2 {
-    font-size: 22px;
-    margin-bottom: 10px; }
-.pvp-container {
-    padding: 40px;
-    font-family: sans-serif;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    max-width: 900px;
-    margin: auto; }
-.pvp {
-    display: flex;
-    align-items: center;
-    gap:40px; 
-    flex-direction: row-reverse;
-    text-align: right;
-    }
-.pvp .pvp-text{ align-items: flex-start; text-align: left;}
-.pvptitle{
-    color: white;
-    letter-spacing: 2px;
-    background-color: #406868;
-    padding: 5px 8px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-bottom: 8px;
-    /* flex: 1; */
-    min-width: 250px;
-}
-.pvp img {
-    height: 200px;
-    width: 200px;
-    border-radius: 12px;
-    object-fit: cover;}
-.pvp-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; }
-.pvp-text .pvp-title{
-    font-weight: 600;
-    font-size: 14px;
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 8px;
-    margin: 8px 0; }
-.pvp h2 { 
-    font-size: 28px;
-    margin: 0;
-    font-weight: bold;
-}
-
-/* .pvp p {
-
-} */
