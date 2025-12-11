@@ -36,7 +36,7 @@
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <img src="SRE_logo_green.png" alt="logo sre">
+            <img src="assets/SRE_logo_green.png" alt="logo sre">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,13 +47,13 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">About</a>
+                <a class="nav-link active" href="About copy .html">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Our Team</a>
+                <a class="nav-link active" href="Ourteam.php">Our Team</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Our Activity</a>
+                <a class="nav-link active" href="activity.php">Our Activity</a>
               </li>
               
             </ul>

@@ -8,21 +8,11 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     scroll-behavior: smooth;}
-  
-.container-fluid {
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-    width: 100% !important;
-    overflow: hidden;
-}
+
 section {
     overflow-x:hidden;
     min-height: auto; 
-    padding: 100px 0; 
     width: 100%;
     position: relative;
     display: flex;
@@ -33,7 +23,6 @@ section {
 .container .text-center {
     background-color: white; 
     padding: 0; 
-    min-height: 80vh; 
     width: 100%;
 }
 .activity-header {
