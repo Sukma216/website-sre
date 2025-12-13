@@ -258,8 +258,8 @@ if (!$result) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="About.php">About</a></li>
                     <li class="nav-item"><a class="nav-link active-page" href="Ourteam.php">Our Team</a></li>
                     <li class="nav-item"><a class="nav-link" href="activity.php">Our Activity</a></li>
                 </ul>
@@ -340,8 +340,8 @@ if (!$result) {
                 <div class="col-lg-2 mb-4">
                     <h5>Quick Links</h5>
                     <ul class="quick-links">
-                        <li><a href="">Home</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="About.php">About</a></li>
                         <li><a href="Ourteam.php">Our Team</a></li>
                         <li><a href="activity.php">Our Activity</a></li>
                     </ul>
