@@ -1,3 +1,7 @@
+<?php
+// Koneksi database
+include 'koneksi/database.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,30 +16,36 @@
             --light-green: #4A7C2C;
             --accent-gold: #B39B2A;
         }
-
         body {
             font-family: 'Poppins', sans-serif !important;
             background-color: #f9fbf9;
             overflow-x: hidden;
         }
-
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif !important;
             font-weight: 700;
         }
-
         /* === NAVBAR === */
         .navbar {
             padding: 20px 50px;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: transparent !important;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             z-index: 100;
+            transition: all 0.4s ease;
+        }
+        .navbar.transparent {
+            background-color: transparent !important;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
         .navbar-brand img { height: 50px; width: auto; }
-        
         .nav-link {
             color: var(--primary-green) !important;
             font-weight: 600;
@@ -45,15 +55,68 @@
             padding: 8px 15px !important;
             border-radius: 20px;
         }
-
         .nav-link:hover { color: var(--accent-gold) !important; }
-
         .nav-link.active-page {
             background-color: var(--primary-green) !important;
             color: white !important;
             box-shadow: 0 4px 10px rgba(45, 80, 22, 0.2);
         }
+        .about-hero{
+            position: relative;
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* overlay gelap */
+        .hero-overlay{
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        /* konten teks */
+        .hero-content{
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1{
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p{
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* responsive */
+        @media (max-width: 768px){
+            .about-hero{
+                height: 45vh;
+            }
+
+            .hero-content h1{
+                font-size: 2.8rem;
+            }
+
+            .hero-content p{
+                font-size: 1rem;
+            }
+        }
         /* === CONTENT SECTION === */
         .container {
             max-width: 1200px;
@@ -61,10 +124,8 @@
             padding: 0 20px;
         }
         .two { padding-top: 120px; padding-bottom: 50px; }
-
         /* === VISION SECTION === */
         .vision { margin-bottom: 100px; }
-
         .vission-row {
             display: flex;
             align-items: center;
@@ -189,6 +250,61 @@
             opacity: 0.95;
         }
 
+        /* === COLLABORATORS SECTION === */
+        .collaborators {
+            margin-bottom: 100px;
+            padding: 60px 0;
+        }
+        .collaborators-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .collaborators-title h2 {
+            font-size: 3rem;
+            color: var(--primary-green);
+            font-weight: 800;
+        }
+        .collaborators-title h2 span.our {
+            color: var(--accent-gold);
+        }
+        .collaborators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            align-items: center;
+            justify-items: center;
+        }
+        .collaborator-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            height: 160px;
+            text-decoration: none;
+        }
+        .collaborator-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(45, 80, 22, 0.2);
+        }
+        .collaborator-item img {
+            max-width: 140px;
+            max-height: 110px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+        .collaborator-item:hover img {
+            filter: grayscale(0%);
+        }
+
         /* === SCROLL ANIMATIONS === */
         .scroll-in, .scroll-in-right { opacity: 0; transition: all 0.8s ease; }
         .scroll-in { transform: translateY(30px); }
@@ -239,6 +355,19 @@
             .ourtagline > div h1 {
                 font-size: 2rem;
             }
+
+            .collaborators-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 25px;
+            }
+            .collaborator-item {
+                height: 130px;
+                padding: 20px;
+            }
+            .collaborator-item img {
+                max-width: 100px;
+                max-height: 80px;
+            }
         }
 
         /* === FOOTER === */
@@ -281,7 +410,14 @@
             </div>
         </div>
     </nav>
-  
+    <section class="about-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content scroll-in">
+            <h1>About Us</h1>
+            <p>Society of Renewable Energy<br>UPN "Veteran" Yogyakarta</p>
+        </div>
+    </section>
+
     <div class="container">
         <section class="two">
             <div class="vision">
@@ -301,7 +437,7 @@
                     </div>
 
                     <div class="vision-image">
-                        <img src="sreidn-logo/wind-power.png" class="scroll-in-right" style="transition-delay: 0s;" alt="wind-power">
+                        <img src="assets/home/wind-power.png" class="scroll-in-right" style="transition-delay: 0s;" alt="wind-power">
                     </div>
                 </div>
             </div>
@@ -318,19 +454,19 @@
                 
                 <div class="mission-right">
                     <div class="mission-item">
-                        <img src="sreidn-logo/logo 1 (1).png" class="misi-icon scroll-in-right" style="transition-delay: 0s" alt="icon 1">
+                        <img src="assets/home/logo 1 (1).png" class="misi-icon scroll-in-right" style="transition-delay: 0s" alt="icon 1">
                         <div class="misi-box scroll-in-right" style="transition-delay: 0.1s">
                             <p>1. Enhancing RE-Knowledge through educational programs and real-world implementation</p>
                         </div>
                     </div>
                     <div class="mission-item">
-                        <img src="sreidn-logo/logo 3.png" class="misi-icon scroll-in-right" style="transition-delay: 0.2s" alt="icon 2">
+                        <img src="assets/home/logo 3.png" class="misi-icon scroll-in-right" style="transition-delay: 0.2s" alt="icon 2">
                         <div class="misi-box scroll-in-right" style="transition-delay: 0.3s">
                             <p>2. Building a comfortable and inclusive ecosystem for members to grow and thrive for various goals</p>
                         </div>
                     </div>
                     <div class="mission-item">
-                        <img src="sreidn-logo/logo 2.png" class="misi-icon scroll-in-right" style="transition-delay: 0.4s" alt="icon 3">
+                        <img src="assets/home/logo 2.png" class="misi-icon scroll-in-right" style="transition-delay: 0.4s" alt="icon 3">
                         <div class="misi-box scroll-in-right" style="transition-delay: 0.5s">
                             <p>3. Strengthening partnership among member and expanding network form other SRE chapter
                                 and external organizations to drive impactful initiatives and long-term impact</p>
@@ -369,6 +505,37 @@
                             <p>Opportunity and potential to innovate, grow and create change for themself and in the world of renewable energy</p>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Collaborators Section -->
+            <div class="collaborators">
+                <div class="collaborators-title scroll-in">
+                    <h2><span class="our">Our</span> Collaborators</h2>
+                </div>
+                
+                <div class="collaborators-grid">
+                    <?php
+                    // Query untuk mengambil data collaborators dari database
+                    $query = "SELECT image, link, nama_kolaborator FROM sre_kolaborator ORDER BY id_srekolaborator ASC";
+                    $result = mysqli_query($db, $query);
+                    
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        while ($collab = mysqli_fetch_assoc($result)) {
+                            // Pastikan link memiliki protocol (http/https)
+                            $link = $collab['link'];
+                            if (!empty($link) && !preg_match("~^(?:f|ht)tps?://~i", $link)) {
+                                $link = "https://" . $link;
+                            }
+                            
+                            echo '<a href="' . htmlspecialchars($link) . '" target="_blank" class="collaborator-item scroll-in" rel="noopener noreferrer">';
+                            echo '<img src="' . htmlspecialchars($collab['image']) . '" alt="' . htmlspecialchars($collab['nama_kolaborator']) . '">';
+                            echo '</a>';
+                        }
+                    } else {
+                        echo '<p style="text-align: center; color: #666; grid-column: 1/-1;">No collaborators available at the moment.</p>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -411,6 +578,7 @@
     </footer>
 
     <script>
+        // Scroll animation observer
         const elements = document.querySelectorAll('.scroll-in, .scroll-in-right');
       
         const observer = new IntersectionObserver((entries) => {
@@ -424,6 +592,18 @@
         });
       
         elements.forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        navbar.classList.add('transparent');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('transparent');
+            } else {
+                navbar.classList.add('transparent');
+            }
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

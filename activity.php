@@ -2,22 +2,18 @@
 // =================================================================
 // 1. KONEKSI DATABASE
 // =================================================================
-// Pastikan file 'koneksi/database.php' berisi logika koneksi (misalnya mysqli)
 include 'koneksi/database.php';
 
 // =================================================================
 // 2. INISIALISASI VARIABEL PENGAMBILAN DATA
 // =================================================================
-$activities = []; // Array untuk menyimpan semua activity
+$activities = [];
 
-// Cek koneksi (menggunakan variabel $db yang harus didefinisikan di database.php)
 if (!isset($db) || !$db) {
-    // Memberikan pesan error yang lebih jelas jika koneksi gagal
     die("Error: Objek koneksi \$db tidak tersedia atau gagal terinisialisasi. Cek 'koneksi/database.php'.");
 }
 
 try {
-    // --- Query Semua Activity ---
     $query_activities = "SELECT Id_activity, nama_activity, deskripsi, sdg_image, sdg_deskripsi FROM activity ORDER BY Id_activity";
     $result = $db->query($query_activities);
     
@@ -70,10 +66,9 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRE UPNVY - Our Activity</title>
+    <title>Our Activity - SRE UPNVY</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="activity.css"> 
     <style>
         body, html {
             font-family: 'Poppins', sans-serif;
@@ -81,22 +76,33 @@ try {
             min-height: 100vh;
             overflow-y: auto !important;
             overflow-x: hidden;
-            /* padding-top: 70px; */
+            background-color: #f9fbf9;
         }
         :root {
             --primary-green: #2D5016;
             --light-green: #4A7C2C;
             --accent-gold: #B39B2A;
         }
+        
+        /* === NAVBAR === */
         .navbar {
-            padding: 12px 50px; /* PERUBAHAN 1: Padding vertikal dikecilkan */
-            position: fixed; 
+            padding: 20px 50px;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: white !important; 
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+            transition: all 0.4s ease;
+        }
+        .navbar.transparent {
+            background-color: transparent !important;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
         .navbar-brand img { height: 50px; width: auto; }
         
@@ -114,38 +120,74 @@ try {
             color: var(--accent-gold) !important;
         }
 
-        /* Class khusus untuk menu yang sedang aktif */
         .nav-link.active-page {
             background-color: var(--primary-green) !important;
             color: white !important;
             box-shadow: 0 4px 10px rgba(45, 80, 22, 0.2);
         }
-        .activity-section {
-            height: auto !important;
-            min-height: auto !important;
-            margin-bottom: 80px !important; 
-            padding-top: 0 !important;
-            display: block !important;
-        }
 
-        .activity-section .row {
-            margin-top: 20px !important; 
-        }
-
-        .activity-header {
-            /* PERUBAHAN 2: Menyesuaikan padding-top agar konten sedikit lebih turun */
-            padding-top: 115px; 
-            margin-bottom: 30px; 
+        /* === HERO SECTION === */
+        .activity-hero {
+            position: relative;
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
         }
 
-        .row { max-height: none !important; overflow: visible !important; } 
-        .col, .col-auto, .col-lg-4, .col-lg-5, .col-lg-7, .col-lg-8 { max-height: none !important; overflow: visible !important; }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .activity-hero {
+                height: 45vh;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
+
+        /* === ACTIVITY CONTENT === */
+        .activity-section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
 
         /* See More Activity Button */
         .see-more-container {
             text-align: center;
-            margin: 20px 0 40px 0;
+            margin: 40px 0 60px 0;
         }
 
         .see-more-btn {
@@ -257,64 +299,61 @@ try {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Footer Styles (Sudah bagus, dipertahankan) */
+        /* Scroll Animations */
+        .scroll-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer Styles */
         .footer {
             background: linear-gradient(135deg, #2D5016 0%, #4A7C2C 100%);
             color: white;
-            padding: 60px 0 20px 0;
+            padding: 70px 0 30px 0;
             margin-top: 80px;
         }
 
         .footer h5 {
             font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
         }
 
         .footer p, .footer a {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             line-height: 1.8;
         }
 
         .footer a:hover {
             color: white;
-            text-decoration: underline;
+            padding-left: 5px;
         }
 
         .footer-logo {
-            max-width: 200px;
+            max-width: 180px;
             margin-bottom: 20px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            margin-right: 10px;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: white;
-            color: #2D5016;
-            transform: translateY(-3px);
+            margin-top: 20px;
+            margin-left: 20px;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            margin-top: 40px;
-            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin-top: 50px;
+            padding-top: 25px;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         .quick-links li {
             list-style: none;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .quick-links {
@@ -322,9 +361,9 @@ try {
         }
     </style>
 </head>
-<body class="home-page">
+<body>
     
-    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php"> 
                 <img src="assets/SRE_logo_green.png" alt="logo sre">
@@ -333,7 +372,8 @@ try {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto"> <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li> 
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li> 
                     <li class="nav-item"><a class="nav-link" href="about.php">About</a></li> 
                     <li class="nav-item"><a class="nav-link" href="Ourteam.php">Our Team</a></li>
                     <li class="nav-item"><a class="nav-link active-page" href="activity.php">Our Activity</a></li>
@@ -341,11 +381,19 @@ try {
             </div>
         </div>
     </nav>
-    <div class="activity-header">
-        <h1 class="scroll-in">OUR ACTIVITY</h1>
-        <div class="see-more-container">
-          <a href="all_activities.php" class="see-more-btn">See More Activity</a>
+
+    <!-- Hero Section -->
+    <section class="activity-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content scroll-in">
+            <h1>OUR ACTIVITY</h1>
+            <p>Explore our initiatives for a sustainable future<br>Society of Renewable Energy</p>
         </div>
+    </section>
+
+    <!-- See More Button -->
+    <div class="see-more-container">
+        <a href="all_activities.php" class="see-more-btn">See More Activity</a>
     </div>
 
     <?php if (empty($activities)): ?>
@@ -354,6 +402,7 @@ try {
             <p>Silakan tambahkan data aktivitas di database.</p>
         </div>
     <?php else: ?>
+        <!-- Button Navigation -->
         <div class="button-navigation">
             <button class="arrow-btn" id="prevBtn" onclick="scrollButtons(-1)">‹</button>
             <div class="buttons-container">
@@ -369,6 +418,7 @@ try {
             <button class="arrow-btn" id="nextBtn" onclick="scrollButtons(1)">›</button>
         </div>
 
+        <!-- Activity Content -->
         <div class="container">
             <?php foreach ($activities as $index => $activity): ?>
                 <div class="activity-content <?php echo $index === 0 ? 'active' : ''; ?>" id="activity-<?php echo $index; ?>">
@@ -387,12 +437,10 @@ try {
                         </div>
                         
                         <div class="row align-items-start mt-5">
-                            
+                            <!-- Dokumentasi Images -->
                             <div class="col-lg-4 mb-4 mb-lg-0 d-flex justify-content-center">
                                 <?php if (!empty($activity['dokumentasi'])): ?>
-                                
                                 <div class="d-flex flex-column align-items-center gap-4">
-                                    
                                     <div class="d-flex gap-4 align-items-center">
                                         <img src="<?php echo htmlspecialchars($activity['dokumentasi'][0]); ?>" 
                                             alt="<?php echo htmlspecialchars($activity['nama']); ?>"
@@ -422,9 +470,10 @@ try {
                                 <?php endif; ?>
                             </div>
                             
+                            <!-- Description & SDG -->
                             <div class="col-lg-8">
                                 <div class="row align-items-start">
-                                    
+                                    <!-- Description & Kolaborator -->
                                     <div class="col-lg-5 mb-3 mb-lg-0">
                                         <p style="text-align: justify; margin-bottom: 20px;"><?php echo nl2br(htmlspecialchars($activity['deskripsi'])); ?></p>
                                         
@@ -440,28 +489,28 @@ try {
                                         <?php endif; ?>
                                     </div>
                                     
+                                    <!-- SDG Section -->
                                     <div class="col-lg-7">
                                         <div class="bg-light p-3 rounded shadow-sm">
                                             <div class="d-flex flex-column gap-3 mb-3">
                                                 <div class="d-flex flex-wrap gap-2 justify-content-center">
                                                     <?php 
-                                                    // Menampilkan SDG Image
                                                     $sdg_paths = !empty($activity['sdg_image']) ? explode(',', $activity['sdg_image']) : [];
                                                     foreach ($sdg_paths as $sdg_path): 
-                                                         if (trim($sdg_path) !== ''): 
+                                                        if (trim($sdg_path) !== ''): 
                                                     ?>
                                                             <img src="<?php echo htmlspecialchars(trim($sdg_path)); ?>" 
                                                                 alt="SDG" 
                                                                 style="width: 90px; height: 90px; object-fit: contain; display: block;">
                                                     <?php 
-                                                         endif;
+                                                        endif;
                                                     endforeach; 
                                                     ?>
                                                 </div>
                                                 
                                                 <div class="text-center">
                                                     <img src="sdg/SDGLogo.gif" alt="Sustainable Development Goals" 
-                                                            style=" max-width: 250px; height: 60px; object-fit: contain;">
+                                                            style="max-width: 250px; height: 60px; object-fit: contain;">
                                                 </div>
                                             </div>
                                             
@@ -481,7 +530,7 @@ try {
         </div>
     <?php endif; ?>
 
-
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -523,17 +572,14 @@ try {
         const scrollAmount = 300;
 
         function showActivity(index) {
-            // Hide all activities
             document.querySelectorAll('.activity-content').forEach(content => {
                 content.classList.remove('active');
             });
             
-            // Remove active from all buttons
             document.querySelectorAll('.activity-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Show selected activity
             const activityContent = document.getElementById('activity-' + index);
             const activityButton = document.querySelectorAll('.activity-btn')[index];
             
@@ -547,7 +593,6 @@ try {
             const wrapper = document.getElementById('buttonsWrapper');
             const container = wrapper.parentElement;
             
-            // Cek apakah elemen ada sebelum memproses
             if (!wrapper || !container) return;
 
             const maxScroll = wrapper.scrollWidth - container.clientWidth;
@@ -557,20 +602,30 @@ try {
             
             wrapper.style.transform = `translateX(-${currentScroll}px)`;
             
-            // Update arrow button states
             document.getElementById('prevBtn').disabled = currentScroll === 0;
             document.getElementById('nextBtn').disabled = currentScroll >= maxScroll;
         }
 
-        // Initialize arrow states and show default activity on load
         document.addEventListener('DOMContentLoaded', function() {
-            // Tampilkan aktivitas pertama secara default
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.add('transparent');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.remove('transparent');
+                } else {
+                    navbar.classList.add('transparent');
+                }
+            });
+
+            // Initialize activities
             if (document.querySelectorAll('.activity-btn').length > 0) {
                 showActivity(0);
             }
             
             const wrapper = document.getElementById('buttonsWrapper');
-            const container = wrapper.parentElement;
+            const container = wrapper ? wrapper.parentElement : null;
             
             if (wrapper && container) {
                 const maxScroll = wrapper.scrollWidth - container.clientWidth;
@@ -579,8 +634,8 @@ try {
                 document.getElementById('nextBtn').disabled = maxScroll <= 0;
             }
 
-            // Scroll animations (dipertahankan dari kode Anda)
-            const elements = document.querySelectorAll('.scroll-in, .scroll-in-right, .scroll-in-left');
+            // Scroll animations
+            const elements = document.querySelectorAll('.scroll-in');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !entry.target.classList.contains('show')) {
@@ -589,13 +644,7 @@ try {
                 });
             }, { threshold: 0.2 });
 
-            elements.forEach(el => {
-                observer.observe(el);
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    el.classList.add('show');
-                }
-            });
+            elements.forEach(el => observer.observe(el));
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

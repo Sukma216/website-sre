@@ -387,7 +387,7 @@ $result_divisi = $stmt_divisi->get_result();
                     <?php else: ?>
                         <div class="col-12 d-flex align-items-center">
                             <div class="alert alert-info text-center w-100 mt-3">
-                                <h5 class="mb-3">📋 Division Information</h5>
+                                <h5 class="mb-3">Division Information</h5>
                                 <p class="mb-0">Data divisi untuk departemen ini sedang dalam proses penyusunan.</p>
                             </div>
                         </div>
@@ -413,8 +413,8 @@ $result_divisi = $stmt_divisi->get_result();
                 <div class="col-lg-2 mb-4">
                     <h5>Quick Links</h5>
                     <ul class="quick-links">
-                        <li><a href="">Home</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="About.php">About</a></li>
                         <li><a href="Ourteam.php">Our Team</a></li>
                         <li><a href="activity.php">Our Activity</a></li>
                     </ul>

@@ -1,20 +1,549 @@
 *{
-    margin : 0;
-    padding : 0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif; }
-body {width: 100%; overflow-y: visible; overflow-x: hidden; background: linear-gradient(to bottom, #18350B) ; margin: 0; padding: 0; scroll-behavior: smooth;}
-.about-page{background: linear-gradient(to bottom, #0b3d2e, #c7bda5); }
-.container{ scroll-snap-type: y mandatory; overflow-y: scroll; height: 100vh; scroll-behavior: smooth;}
+    font-family: 'Poppins', sans-serif; 
+}
+
+body {
+    width: 100%; 
+    overflow-y: visible; 
+    overflow-x: hidden; 
+    background: white; 
+    margin: 0; 
+    padding: 0; 
+    scroll-behavior: smooth;
+}
+
+.container-fluid {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
 section{
-    overflow-x:hidden;
-    height :100vh;
-    /* display: flex; */
+    overflow-x: hidden;
     justify-content: center;
     align-items: center; 
-    scroll-snap-align: start; } 
+} 
+
+/* NAVBAR */
+.navbar-brand img { 
+    width: 40px;
+    height: 30px; 
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7) !important; 
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+    padding: 1rem 2rem;
+}
+
+.navbar .nav-link, 
+.navbar .navbar-brand { color: white !important; }
 
 /* ANIMASI SCROLL IN */
+.scroll-in {
+    transform: translateY(100px);
+    transition: transform 0.8s ease-out; 
+}
+
+.scroll-in.show {
+    transform: translateY(0);
+}
+
+.scroll-in-right {
+    transform: translateX(100px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out; 
+}
+
+.scroll-in-right.show {
+    transform: translateX(0) scale(1);
+    opacity: 1; 
+}
+
+.scroll-in-left {
+    transform: translateX(-100px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.8s ease; 
+}
+
+.scroll-in-left.show {
+    transform: translateX(0) scale(1);
+    opacity: 1; 
+}
+
+/* HOME PAGE */
+.home-one{
+    position: relative;
+    background-image: url(fotoalbum/Green\ Tosca\ Modern\ Geometric\ Web\ Hosting\ Service\ Presentation.jpg);
+    background-size: cover; 
+    background-position: center;
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left; 
+}
+
+.overlay-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding: 50px;
+    width: 100%; 
+}
+
+.overlay{ 
+    padding: 50px; 
+    width: 100%; 
+    margin-bottom: 0; 
+}
+
+.overlay p{
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px; 
+}
+
+.overlay h1{
+    padding-top: 10px;
+    font-size: 100px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 0.7; 
+}
+
+.overlay h1 span{ 
+    display: block; 
+    color: #18350B; 
+    margin: 0; 
+    padding: 0; 
+    line-height: 1; 
+}
+
+.overlay h3{ 
+    font-style: italic; 
+    font-size: 20px; 
+    margin-top: 6px; 
+}
+
+.explore-text{
+    margin-top: 10px; 
+    margin-left: 3rem; 
+}
+
+.explore-text h2{ 
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
+.sreidn-button{
+    display: inline-block;
+    background-color: #687C32;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    margin: 10px; 
+}
+
+.sreidn-button:hover{
+    background-color: #536328;
+    color: white;
+}
+
+/* TENTANG SRE INDONESIA */
+.home-three{
+    color: #18350B; 
+    background-color: white;
+    padding: 80px 5%;
+    text-align: center; 
+}
+
+.sreidn-heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem; 
+}
+
+.sreidn-heading h1{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #18350B; 
+    margin: 0; 
+}
+
+.sreidn-heading img{ 
+    width: 85px; 
+    height: auto; 
+    display: block; 
+}
+
+.sreidn-images{
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 1rem; 
+}
+
+.sreidn-images img{
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px; 
+}
+
+.sreidn-top{
+    padding-bottom: 10px;
+}
+
+.sreidn-top p{
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.sreidn-middle{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 3rem;
+    flex-wrap: wrap; 
+}
+
+.middle-item{ 
+    text-align: center; 
+    max-width: 200px; 
+}
+
+.middle-item img{
+    width: 150px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.middle-item h3{
+    color: #18350B;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.middle-item p{
+    color: #666;
+}
+
+/* TENTANG SRE UPNVY */
+.home-two {
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+    color: #18350B;
+    padding: 80px 5%;
+    font-family: 'Poppins', sans-serif; 
+}
+
+.sre-images{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem; 
+}
+
+.sre-img{
+    width: 30%;
+    height: auto;
+    object-fit: cover;
+    border: 3px solid #18350B;
+    border-radius: 15px; 
+}
+
+.sre-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+    padding-right: 0;
+    padding-top: 30px; 
+}
+
+.sre-left{ 
+    flex: 1; 
+    text-align: left; 
+    padding-left: 0; 
+}
+
+.sre-left .sre-logo{ 
+    height: 90px; 
+}
+
+.sre-left h2{
+    color: #18350B; 
+    font-size: 2rem; 
+    margin: 0;
+}
+
+.sre-left p{
+    font-style: italic; 
+    color: #666;
+}
+
+.sre-right{
+    flex: 2; 
+    padding-right: 0; 
+    color: #18350B;
+}
+
+.sre-right h1{
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px; 
+}
+
+.slogan-wrapper{
+    background-color: #3f5838;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.slogan-badge {
+    background-color: #466b67;
+    color: white;
+    font-style: italic;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 8px 20px;
+    display: inline-block;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    font-size: 14px; 
+}
+
+.desc{
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: justify;
+    color: #333;
+}
+
+.desc span{
+    font-weight: bold;
+    color: #18350B;
+}
+
+/* COLLABORATORS */
+.home-four{ 
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+    padding: 80px 5%;
+}
+
+.logoMETI{
+    height: 100px; 
+    width: 100px; 
+    padding: 20px;
+}
+
+.logoUNDP{
+    height: 100px; 
+    width: 100px;
+}
+
+.collab-heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.collab-heading h1{ 
+    font-size: 2rem; 
+    margin: 0; 
+    color: #18350B;  
+}
+
+.collab-heading img{
+    margin-top: 0;
+    height: auto; 
+    width: 85px;
+    display: block;
+}
+
+.collab{
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 20px 0;
+    justify-content: center;
+    text-align: center;
+}
+
+.collaborators{ 
+    display: inline-block; 
+    animation: scroll-logo 50s linear infinite; 
+}
+
+.collab:hover .collaborators{ 
+    animation-play-state: paused;
+}
+
+.collaborators img{
+    padding: 10px;
+    background-color: white;
+    height: 100px;
+    margin: 0 30px;
+    border-radius: 10px;
+    vertical-align: middle;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.collaborators img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+@keyframes scroll-logo {
+    0%{transform: translateX(0);}
+    100%{transform: translateX(-50%);}
+}
+
+/* CONTACT US */
+.home-five{
+    background-color: #18350B;
+    color: white;
+    padding: 80px 5%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Contact-title{
+    font-weight: bold;
+    text-align: center;
+    font-size: 4rem;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.footer-sre{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    color: white;
+    max-width: 1100px;
+    width: 100%;
+    gap: 6rem;
+}
+
+.footer-left{
+    text-align: center;
+    flex: 1 1 300px;
+    max-width: 300px;
+}
+
+.footer-left h2{ 
+    font-size: 2rem; 
+    margin-bottom: 10px; 
+    color: white; 
+}  
+
+.footer-left p{
+    margin: 4px 0;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #cfe5e7;
+}
+
+.footer-left img{ 
+    height: 90px; 
+}
+
+.footer-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    max-width: 600px;
+}
+
+.contact-item{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.contact-item img{
+    width: 24px;
+    height: 24px;
+    margin-top: 3px;
+    filter: brightness(0) invert(1);
+}
+
+.contact-item span{ 
+    color: white; 
+} 
+
+.contact-item p{ 
+    color: white; 
+    margin: 0; 
+}
+
+.contact-item a{ 
+    color: white; 
+    text-decoration: none; 
+    font-size: 1rem; 
+}
+
+.contact-item a:hover{ 
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .overlay h1 {
+        font-size: 3rem;
+    }
+
+    .sre-images,
+    .sre-bottom,
+    .sreidn-middle {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sre-img {
+        width: 80%;
+    }
+
+    .footer-right {
+        grid-template-columns: 1fr;
+    }
+}
 .scroll-in {
     transform: translateY(100px); /* gerak dari bawah */
     transition: transform 0.8s ease-out; }
@@ -34,414 +563,3 @@ section{
     transform: translateX(0) scale(1);
     opacity: 1; }
 
-.one{ 
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-}
-.vision{ padding: 60px 100px; }
-.vission-row {
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-    gap: 5rem; 
-    justify-content: space-between;
-    flex-wrap: wrap; }
-.vision-content{flex: 1;}
-.vision-title{display: flex; align-items: flex-start; flex-direction: column; gap: 0;}
-h2.visi{ font-size: 4rem; letter-spacing: 6px;  color: white; position: relative; margin: 0; padding-bottom: 10px; line-height: 1;} 
-h2.our { font-size: 3rem;  letter-spacing: 6px ; color: #007a60;  margin: 0; padding: 0; line-height: 1; }
-.vision-text p { font-size: 18px; color: #b6c664; margin-top: 20px; line-height: 1.6; text-align: justify;}
-.vision-text p span{color: #f3fcfa; font-weight: bold;}
-h2.visi::after{
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%; 
-    height: 5px; 
-    background-color: white;  }
-.vision-image{flex: 1; text-align: center;}
-.vision-image img{max-width: 100%; height: auto; max-height: 300px;} 
-.mission{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 50px 30px;
-    max-width: 1000px;
-    margin: 0 auto;  }
-.mission-left{flex: 1; text-align: left;}
-.mission-title{
-    padding-left: 0;
-    font-size: 3rem;
-    color: white;
-    font-weight: bold;
-    transform: translateX(-30px);
-    /* margin-bottom: 40px; */ }
-.mission-right{
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.mission-item{
-    display: flex;
-    align-items: flex-start;
-    gap: 25px; }
-.misi-icon{width: 80px; height: auto;}
-.misi-box{
-    background-color: #f1f1f1;
-    border-radius: 15px;
-    padding: 20px 20px;
-    /* margin-top: 6px; */
-    flex: 1;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);}
-.misi-box p{margin: 0; font-size: 1rem; color: #18350B; line-height: 1.6;}
-
-
-/* TAGLINE */
-.ourtagline {
-    position: relative;
-    padding: 50px 20px;
-    margin-bottom: 30px;
-    overflow: hidden; }
-.ourtagline h1{
-    color: white;
-    letter-spacing: 2px;
-    font-size: 3rem;
-    font-family: 'Poppins', sans-serif;
-    text-align: center; }
-.ourtagline span{ color: #007a60;}
-.scroll-container{
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    gap: 20px;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 20px 0;    }
-.scroll-container::-webkit-scrollbar{ display: none;}
-.tagline-item { 
-    width: 400px;
-    height: 300px;
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-    background-color: #42623f;
-    padding: 30px 20px;
-    border-radius: 16px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    color: white; 
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center;  */ }
-.tagline-item.active{
-    transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(255,255,255,0.4) ;
-    background-color: #115e59; }
-.tagline-item h2 { font-size: 2rem; color: #D6D3CC;}
-.tagline-item p { font-size: 1.5rem;  color: #e0f2f1;  text-align: justify;}
-.scroll-btn{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #0f766e;
-    color: white;
-    border: none;
-    font-size: 2rem;
-    padding: 10px 16px;
-    cursor: pointer;
-    z-index: 1;
-    border-radius: 50%;
-    box-shadow:  0 4px 8px rgba(0,0,0,0.3); }
-.scroll-left{ left: 10px;}
-.scroll-right{right: 10px;}
-
-/* HOME PAGE */
-.home-one{
-    position: relative;
-    background-image: url(fotoalbum/Green\ Tosca\ Modern\ Geometric\ Web\ Hosting\ Service\ Presentation.jpg);
-    background-size: cover; 
-    background-position: center;
-    height: 100vh;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: left; }
-.overlay-container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    height: 100%;
-    padding: 50px;
-    width: 100%; }
-.overlay{ padding: 50px; width: 100%; margin-bottom: 0; }
-.overlay p{
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 2px; }
-.overlay h1{
-    padding-top: 10px;
-    font-size: 100px;
-    font-weight: bold;
-    margin : 0;
-    line-height: 0.7; }
-.overlay h1 span{ 
-    display:block; 
-    color:  #18350B; 
-    margin: 0; 
-    padding: 0; 
-    line-height: 1; }
-.overlay h3{ font-style: italic; font-size: 20px; margin-top: 6px; }
-.explore-text{margin-top: 10px; margin-left: 3rem; }
-.explore-text p{ font-size: 20px; font-weight: bold; }
-.sreidn-button{
-    display: inline-block;
-    background-color: #687C32;
-    color: white;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    margin: 10px; }
-/* TENTANG SRE UPNVY */
-.home-two {
-    max-width: 100%;
-    overflow-x:hidden;
-    /* background-color: #0e663c;  */
-    color: white;
-    padding: 40px 20px;
-    font-family: 'Poppins', sans-serif; }
-.sre-images{
-    display: flex;
-    justify-content: center;
-    gap: 65px;
-    margin-bottom: 5px; }
-.sre-img{
-    width: 32%;
-    height: auto;
-    object-fit: cover;
-    border: 3px solid rgb(187, 216, 187);
-    border-radius: 30px; }
-.sre-bottom{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
-    padding-right: 5px;
-    padding-top: 30px; }
-.sre-left{ flex: 1; text-align: left; padding-left: 4rem; }
-.sre-left .sre-logo{ height: 90px; }
-.sre-left h2{color: white; font-size: 2rem; margin: 0;}
-.sre-left p{font-style: italic; color: white;}
-.sre-right{flex: 3; padding-right: 4rem; color: white;}
-.sre-right h1{
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 5px; }
-.slogan-wrapper{
-    background-color: #3f5838;
-    display: inline-block;
-    padding: 4px;
-    border-radius: 20px;
-    margin-bottom: 5px;
-     }
-.slogan-badge {
-    background-color: #466b67;
-    color: white;
-    font-style: italic;
-    font-weight: 600;
-    border-radius: 20px;
-    display: inline-block;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-    font-size: 14px; }
-.desc{
-    font-size: 14px;
-    line-height: 1.6;
-    text-align: justify; }
-
-/* TENTANG SRE INDONESIA */
-.home-three{
-    color:  #18350B; 
-    /* background-color: #037581; */
-    /* padding: 2rem; */
-    /* padding-top: 3rem; */
-    text-align: center; }
-.sreidn-heading{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 0.3rem; }
-.sreidn-heading h1{
-    font-size: 2.5rem;
-    font-weight: bold;
-    color:  #18350B; 
-    margin: 0; }
-.sreidn-heading img{ width: 85px; height: auto; display: block; margin-bottom: 8px;}
-.sreidn-images{
-    margin-top: 0;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px; }
-.sreidn-images img{
-    width: 100%;
-    max-width: 320px;
-    height: auto;
-    object-fit: cover; }
-.sreidn-top{padding-bottom: 10px;}
-.sreidn-top h1{ letter-spacing: 3px; font-size: 2.2rem; margin-bottom: 10px; }
-.sreidn-middle{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    /* margin: 10px 0; */
-    flex-wrap: wrap; }
-.middle-item{ text-align: center; max-width: 200px; }
-.middle-item img{
-    width: 150px;
-    height: auto;
-    /* margin-bottom: 10px; */ }
-
-/* COLLABORATORS */
-.home-four{ /*background-color: #037581;*/ overflow-x:hidden;}
-.logoMETI{height: 100px; width: 100px; padding: 20px;}
-.logoUNDP{height: 100px; width: 100px;}
-.collab-heading{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 13px;
-    flex-wrap: wrap;
-    text-align: center;
-}
-.collab-heading h1{ font-size: 2rem; margin: 0; color:  #18350B;  }
-.collab-heading img{
-    margin-top: 8.7rem;
-    height: auto; 
-    width: 85px;
-    display: block;
-}
-.collab{
-    overflow-x: auto;
-    white-space: nowrap;
-    position: relative;
-    /* width: 100%; */
-    padding: 20px 0;
-    justify-content: center;
-    text-align: center;
-    padding-top: 20px ;
-    scroll-behavior: smooth;
-}
-.collab::-webkit-scrollbar{height: 0px;}
-.collab-container h1{
-    margin-top: 10rem;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding: 10px 0;
-    color: white;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    letter-spacing: 2px;
-}
-.collaborators{ display: inline-block; gap: 40px; animation: scroll-logo 50s linear infinite; }
-.collab:hover .collaborators{ animation-play-state: paused;}
-.collaborators img{
-    padding: 10px;
-    background-color: white;
-    height : 100px;
-    margin : 0 30px;
-    border-radius: 10px;
-    vertical-align: middle;
-}
-.collaborators img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-}
-@keyframes scroll-logo {
-    0%{transform: translateX(0);}
-    100%{transform: translateX(-50%);}
-}
-
-/* CONTACT US */
-.home-five{
-    /* background-color: #037581; */
-    color:  #18350B; 
-
-    padding: 80px 40px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.Contact-title{
-    font-weight: bold;
-    text-align: center;
-    font-size: 4rem;
-    color: white;
-    margin-bottom: 50px;
-    /* padding-top: 2rem; */
-}
-.footer-sre{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    color: black;
-    max-width: 1100px;
-    width: 100%;
-    /* padding: 100px 20px; */
-    gap: 6rem;
-}
-.footer-left{
-    /* padding-left: 6rem; */
-    text-align: center;
-    flex: 1 1 300px;
-    max-width: 300px;
-}
-.footer-left h2{ font-size: 2rem; margin-bottom: 10px; color: white; }  
-.footer-left p{
-    margin: 4px 0;
-    font-style: italic;
-    font-size: 0.95rem;
-    color: #cfe5e7;
-}
-.footer-left img{ height: 90px; }
-.footer-right {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 kolom */
-    gap: 12px 24px;                /* vertical 12px, horizontal 24px */
-    max-width: 600px;              /* Biar nggak kepanjangan */
-}
-.contact-item{
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    line-height: 1.5;
-    font-size: 0.95rem;
-}
-.contact-item img{
-    width: 24px;
-    height: 24px;
-    margin-top: 3px;
-    filter: brightness(0) invert(1);
-}
-.contact-item span{ color: white; } .contact-item p{ color: white; margin: 0; }
-.contact-item a{ color: white; text-decoration: none; font-size: 1rem; }
-.contact-item a:hover{ text-decoration: underline;}
-
-/* ACTIVITY PAGE */
